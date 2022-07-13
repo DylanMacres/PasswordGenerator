@@ -4,7 +4,7 @@ const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 const specialChar = "!@#$%^&*-+()_=<>?/\{},.;:"
 const numberChar = "0123456789"
 var passLength;
-var upperCheck;
+var upperCaseCheck;
 var lowerCheck;
 var numberCheck;
 var specialCheck;
@@ -59,7 +59,7 @@ return numbCheck;
 }
 
 
-function specCheck(){
+function specCheck (){
   specialCheck = prompt("Would you like to include special characters in the password?");
     
   
@@ -68,19 +68,19 @@ function specCheck(){
       specCheck(); 
     }
   else if (specialCheck === "yes" || specialCheck === "y"){
-    specCheck = true;
-    return specCheck;
+    specialCheck = true;
+    return specialCheck;
   }
   else if (specialCheck === "no" || specialCheck === "n"){
-    specCheck = false
-    return specCheck;
+    specialCheck = false
+    return specialCheck;
   }
   else{
     alert("Please answer with a yes or no, Y/N")
     specCheck();
   
   }
-  return specCheck;
+  return specialCheck;
   }
 
 
@@ -95,18 +95,18 @@ function specCheck(){
     }
     else if (upperCaseCheck === "yes" || upperCaseCheck === "y"){
     upperCaseCheck = true;
-    return upper
+    return upperCaseCheck;
   }
   else if (upperCaseCheck === "no" || upperCaseCheck === "n"){
   upperCaseCheck = false; 
-  return upper
+  return upperCheck
 
   }else {
     alert("Please answer Yes or No or with a Y/N")
     upperCC();
 
   }
-  return upperCheck;
+  return upperCaseCheck;
   }
 
 
@@ -115,7 +115,7 @@ function specCheck(){
 var generateBtn = document.querySelector("#generate");
 
 function generatePassword(){
-  console.log("button works!");
+
   defineLenght();
   console.log(passLength);
   specCheck();
@@ -123,21 +123,60 @@ function generatePassword(){
   numbCheck();
   console.log(numberCheck);
   upperCC();
-  console.log(upperCC);
+  console.log(upperCaseCheck);
+
+var password = "";
+var characters = lowerCase;
+
+if (specialCheck && numberCheck && upperCaseCheck) {
+  lowerCase + upperCase + numberChar + specialChar;
+}else if (upperCaseCheck && specialCheck){
+  lowerCase + upperCase + specialChar;
+}else if (specialCheck && numberCheck){
+  lowerCase + specialChar + numberChar;
+}else if (upperCaseCheck && numbercheck){
+  lowerCase + numberChar + upperCase;
+}else if (numberCheck){
+  numberChar + lowerCase ;
+}else if (specialCheck){
+  lowerCase + specialChar;
+
+}else if (upperCaseCheck){
+  lowerCase + upperCase;
+}else{
+  characters === lowerCase;
+} 
 
 
-  return "generated pass goes here"
 
-}
+  for (let i = 0; i < length; i++) {
+
+    password = characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return password;
+};
+
+
+
+
+
+
+ 
+
 
 // Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
 
-}
+  function writePassword() {
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
+  
+    passwordText.value = password;
+  
+ 
+};
+
+
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
