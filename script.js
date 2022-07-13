@@ -176,7 +176,7 @@ if (specialCheck && numberCheck && upperCaseCheck) {
  
 };
 
-
+console.log(password);
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
