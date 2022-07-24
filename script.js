@@ -1,8 +1,8 @@
 // Assignment code here
-const lowerCase = "abcdefghijklmnopqrstuvwxyz"
-const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-const specialChar = "!@#$%^&*-+()_=<>?/\{},.;:"
-const numberChar = "0123456789"
+const lowerCase = ["abcdefghijklmnopqrstuvwxyz"]
+const upperCase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
+const specialChar = ["!@#$%^&*-+()_=<>?/\{},.;:"]
+const numberChar = ["0123456789"]
 var passLength;
 var upperCaseCheck;
 var lowerCheck;
@@ -83,7 +83,9 @@ function specCheck (){
   return specialCheck;
   }
 
-
+function lowerCheck(){
+  lowerCaseCheck = true;
+}
 
   function upperCC (){
     upperCaseCheck = prompt ("Would you like to include some uppercases?")
@@ -118,44 +120,47 @@ function generatePassword(){
 
   defineLenght();
   console.log(passLength);
+  lowerCheck();
+  console.log(lowerCaseCheck);
+  
   specCheck();
+
   console.log(specialCheck);
   numbCheck();
   console.log(numberCheck);
   upperCC();
   console.log(upperCaseCheck);
 
-var password = "";
-var characters = lowerCase;
+let password = "";
+let passwordArray = lowerCase;
 
 if (specialCheck && numberCheck && upperCaseCheck) {
-  lowerCase + upperCase + numberChar + specialChar;
+  passwordArray += upperCase + numberChar + specialChar;
 }else if (upperCaseCheck && specialCheck){
-  lowerCase + upperCase + specialChar;
+  passwordArray += upperCase + specialChar;
 }else if (specialCheck && numberCheck){
-  lowerCase + specialChar + numberChar;
+  passwordArray += specialChar + numberChar;
 }else if (upperCaseCheck && numbercheck){
-  lowerCase + numberChar + upperCase;
+  passwordArray += numberChar + upperCase;
 }else if (numberCheck){
-  numberChar + lowerCase ;
+passwordArray += lowerCase ;
 }else if (specialCheck){
-  lowerCase + specialChar;
+  passwordArray += specialChar;
 
 }else if (upperCaseCheck){
-  lowerCase + upperCase;
+  passwordArray += upperCase;
 }else{
-  characters === lowerCase;
+  passwordArray === lowerCase;
 } 
 
 
 
-  for (let i = 0; i < length; i++) {
+  for (var i = 0; i < passLength; i++) {
 
-    password = characters.charAt(Math.floor(Math.random() * characters.length));
+    password += passwordArray.charAt(Math.floor(Math.random() * passwordArray.length));
   }
   return password;
 };
-
 
 
 
@@ -168,11 +173,13 @@ if (specialCheck && numberCheck && upperCaseCheck) {
 
 
   function writePassword() {
-    var password = generatePassword();
+    var passwordDisplay = generatePassword();
     var passwordText = document.querySelector("#password");
   
-    passwordText.value = password;
+    passwordText.value = passwordDisplay;
   
+    password = [];
+    passwordArray = [];
  
 };
 
