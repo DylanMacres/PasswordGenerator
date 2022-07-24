@@ -101,7 +101,7 @@ function lowerCheck(){
   }
   else if (upperCaseCheck === "no" || upperCaseCheck === "n"){
   upperCaseCheck = false; 
-  return upperCheck
+  return upperCaseCheck
 
   }else {
     alert("Please answer Yes or No or with a Y/N")
